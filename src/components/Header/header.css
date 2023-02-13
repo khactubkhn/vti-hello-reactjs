@@ -1,0 +1,11 @@
+.header-container {
+    height: 100px;
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-container h2{
+    margin-left: 20px;
+}
