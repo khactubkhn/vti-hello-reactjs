@@ -1,25 +1,20 @@
 import LightStartIcon from "../LightStarIcon/lightStartIcon";
 import DarkStarIcon from "../DarkStartIcon/darkStarIcon";
+import './style.css'
 
 function ProductRating({star}){
-    let lightStars = [];
-    for(let i = 0; i< star; i++){
-        lightStars.push(<LightStartIcon key={i} />);
+    const stars = [];
+    for(let i = 1; i<= 5; i++){
+        if(i <= star){
+            stars.push(<LightStartIcon key={i} />)
+        }else {
+            stars.push(<DarkStarIcon key={i} />)
+        }
     }
-
-    let darkStars = [];
-
-    for(let i = 0; i < 5 - star; i++){
-        darkStars.push(<DarkStarIcon key={5-i} />)
-    }
-
     return (
-        <div>
+        <div className={"product__rated"}>
             {
-                lightStars
-            }
-            {
-                darkStars
+                stars
             }
         </div>
     )
