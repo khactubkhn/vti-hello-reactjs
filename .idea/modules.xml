@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/vti-hello.iml" filepath="$PROJECT_DIR$/.idea/vti-hello.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/vti-hello-reactjs.iml" filepath="$PROJECT_DIR$/.idea/vti-hello-reactjs.iml" />
     </modules>
   </component>
 </project>
