@@ -1,5 +1,5 @@
-import LightStartIcon from "../LightStarIcon/lightStartIcon";
-import DarkStarIcon from "../DarkStartIcon/darkStarIcon";
+import LightStartIcon from "../../../../common/components/LightStarIcon/lightStartIcon";
+import DarkStarIcon from "../../../../common/components/DarkStartIcon/darkStarIcon";
 import './style.css'
 
 function ProductRating({star}){
