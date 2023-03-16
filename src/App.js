@@ -1,26 +1,12 @@
-import Header from "./components/Header/header";
-import Banner from "./components/Banner/banner";
-import {products} from "./data/products";
-import ProductItem from "./components/Product/productItem";
-import {Container, Row} from "react-bootstrap";
+import React from "react";
+import AdminPage from "./pages/AdminPage/adminPage";
+import ProductPage from "./pages/ProductPage/productPage";
 
-function App() {
+function App(){
     return (
-       <div>
-           <Header/>
-           <Container>
-               <Row>
-                   {
-                       products.map(prod => {
-                           return (
-                               <ProductItem  {...prod}/>
-                           )
-                       })
-                   }
-               </Row>
-           </Container>
-       </div>
-    );
+        <AdminPage />
+    )
 }
+
 
 export default App;
