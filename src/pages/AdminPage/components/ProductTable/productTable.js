@@ -1,24 +1,23 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
-import productService from "../../../../common/api/productService";
+import {Table} from "react-bootstrap";
+import ProductRow from "../ProductRow/productRow";
+import './style.css'
 
-const ProductTable = () => {
-    const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(0);
-
-    useEffect(() => {
-        productService.getProducts(page, 0)
-            .then(response => {
-
-            })
-            .catch(error => {
-
-            })
-    }, [page])
-
+const ProductTable = (props) => {
     return (
-        <div>
-            <h2>Product table</h2>
+        <div className={"product-table"}>
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá sản phẩm</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    props.products.map(product => <ProductRow productName={product.productName} price = {product.price} key={product.id} />)
+                }
+                </tbody>
+            </Table>
         </div>
     );
 };
