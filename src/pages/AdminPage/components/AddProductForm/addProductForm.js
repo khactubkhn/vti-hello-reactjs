@@ -13,6 +13,8 @@ const AddProductForm = (props) => {
                 price: productPrice
             }
             props.onSubmit(newProduct);
+            setProductName("");
+            setPrice("");
         }
     }
 

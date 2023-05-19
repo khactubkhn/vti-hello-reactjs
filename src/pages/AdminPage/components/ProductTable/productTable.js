@@ -14,7 +14,14 @@ const ProductTable = (props) => {
                 </thead>
                 <tbody>
                 {
-                    props.products.map(product => <ProductRow productName={product.productName} price = {product.price} key={product.id} />)
+                    props.products.map(product => {
+                        return (
+                            <ProductRow
+                                productName={product.productName}
+                                price = {product.price}
+                                key={product.id} />
+                        )
+                    })
                 }
                 </tbody>
             </Table>
