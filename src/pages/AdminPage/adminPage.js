@@ -5,6 +5,7 @@ import Header from "../../common/components/Header/header";
 import {Container, Row} from "react-bootstrap";
 import Banner from "../../common/components/Banner/banner";
 import ProductList from "../ProductPage/components/ProductList/productList";
+import productAdminService from "../../common/api/productAdminService";
 
 
 function AdminPage() {
@@ -22,6 +23,13 @@ function AdminPage() {
     const handleAddProduct = (product) => {
         console.log(product);
         setProducts([...products, product])
+        productAdminService.createProduct({...product, rated: 0})
+            .then(response => {
+                alert('Thêm thành công');
+            })
+            .catch(error => {
+                alert('Rất tiếc đã xảy ra lỗi, vui lòng thử lại sau');
+            })
     }
 
     return (
