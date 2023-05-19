@@ -1,0 +1,12 @@
+h2 {
+    text-align: center;
+}
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-page-container {
+    margin-top: 50px;
+}

@@ -4,13 +4,17 @@ import {Button, Form} from "react-bootstrap";
 const AddProductForm = (props) => {
     const [productName, setProductName] = useState('');
     const [productPrice, setPrice] = useState('');
+    const [brand, setBrand] = useState('');
+    const [image, setImage] = useState('');
 
     const handleSubmitForm = () => {
         if(props.onSubmit){
             const newProduct = {
                 id: uuid(),
                 productName: productName,
-                price: productPrice
+                price: productPrice,
+                brand: brand,
+                image: image
             }
             props.onSubmit(newProduct);
             setProductName("");
@@ -34,6 +38,18 @@ const AddProductForm = (props) => {
                 <Form.Label>Tên sản phẩm</Form.Label>
                 <Form.Control onChange={(e) => setProductName(e.target.value)} value={productName}
                               placeholder="Nhập vào tên sản phẩm"/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="brand">
+                <Form.Label>Thương hiệu</Form.Label>
+                <Form.Control onChange={(e) => setBrand(e.target.value)} value={brand}
+                              placeholder="Nhập vào thương hiệu"/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="image">
+                <Form.Label>Đường dẫn ảnh</Form.Label>
+                <Form.Control onChange={(e) => setImage(e.target.value)} value={image}
+                              placeholder="Nhập vào dường dẫn ảnh"/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="productPrice">

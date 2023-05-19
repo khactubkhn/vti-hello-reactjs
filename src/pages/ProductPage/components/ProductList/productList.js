@@ -3,6 +3,7 @@ import axios from "axios";
 import ProductItem from "../Product/productItem";
 import {Row} from "react-bootstrap";
 import Paging from "../../../../common/components/Pagination/pagination";
+import productService from "../../../../common/api/productService";
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class ProductList extends React.Component {
     }
 
     fetchProducts(page, size){
-        axios.get(`http://contabo.foxcode.site:8082/api/v1/products?page=${page}&size=${size}`)
+        productService.getProducts(page, size)
             .then(response => {
                 const data = response.data;
                 const products = data.content;
