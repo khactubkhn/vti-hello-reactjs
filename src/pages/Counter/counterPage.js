@@ -1,19 +1,35 @@
-import {useState} from "react";
+import {useState} from 'react';
+import store from '../../store/store';
 
 const CounterPage = () => {
-    const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
 
-    const handleIncreaseCounter = () => {
-        setCounter(counter +1);
-    }
+  const handleIncreaseCounter = () => {
+    store.dispatch({
+      type: 'counter/increment'
+    });
+  };
 
-    return (
-        <>
-            <h2>Counter page</h2>
-            <h2>{counter}</h2>
-            <button onClick={handleIncreaseCounter}>Increase</button>
-        </>
-    );
+  const handleDecreaseCounter = () => {
+    store.dispatch({
+      type: 'counter/decrement'
+    });
+  };
+
+  const updateData = () => {
+    store.subscribe(() => setCounter(store.getState().counter))
+  }
+
+  updateData();
+
+  return (
+      <>
+        <h2>Counter page</h2>
+        <h2>{store.getState().counter}</h2>
+        <button onClick={handleIncreaseCounter}>Increase</button>
+        <button onClick={handleDecreaseCounter}>Decrease</button>
+      </>
+  );
 };
 
 export default CounterPage;
