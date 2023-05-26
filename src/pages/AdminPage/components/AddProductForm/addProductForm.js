@@ -1,11 +1,14 @@
 import React, {useRef, useState} from 'react'
 import {Button, Form} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 const AddProductForm = (props) => {
     const [productName, setProductName] = useState('');
     const [productPrice, setPrice] = useState('');
     const [brand, setBrand] = useState('');
     const [image, setImage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSubmitForm = () => {
         if(props.onSubmit){
@@ -29,6 +32,11 @@ const AddProductForm = (props) => {
                     v = c == 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
     }
 
 
@@ -59,6 +67,9 @@ const AddProductForm = (props) => {
             </Form.Group>
             <Button variant="primary" onClick={handleSubmitForm}>
                 Thêm sản phẩm
+            </Button>
+            <Button variant="primary" onClick={handleLogout}>
+                Đăng xuất
             </Button>
         </Form>
     )

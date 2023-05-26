@@ -1,69 +1,56 @@
-import React from "react";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 import ProductItem from "../Product/productItem";
 import {Row} from "react-bootstrap";
 import Paging from "../../../../common/components/Pagination/pagination";
 import productService from "../../../../common/api/productService";
 
-class ProductList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: [],
-            page: 0,
-            totalPage: 0,
-            username: ''
-        }
-    }
+function ProductList() {
+    const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(0);
+    const [totalPage, setTotalPage] = useState(0);
 
-    fetchProducts(page, size){
+
+    function fetchProducts(page, size){
         productService.getProducts(page, size)
             .then(response => {
+                console.log(response);
                 const data = response.data;
                 const products = data.content;
-                this.setState({
-                    products: products,
-                    totalPage: data.totalPages
-                })
+                setProducts(products);
+                setTotalPage(data.totalPages);
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
-    componentDidMount() {
-        this.fetchProducts(this.state.page, 10);
-    }
+    useEffect(() => {
+        //Call API get products
+        fetchProducts(page, 10);
+    }, [page])
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevState.page !== this.state.page){
-            this.fetchProducts(this.state.page, 10);
-        }
-    }
 
-    render() {
-        return (
-            <React.Fragment>
-                <Row>
-                    {
-                        this.state.products.map(product => {
-                            return (
-                                <ProductItem
-                                    key={product.id}
-                                    {...product}
-                                />
-                            )
-                        })
-                    }
-                </Row>
-                <Row>
-                    <Paging page={this.state.page + 1}
-                            totalPage={this.state.totalPage}
-                            onPageClick={(page) => {this.setState({page: page-1})}}
-                    />
-                </Row>
-            </React.Fragment>
-        )
-    }
+    return (
+        <React.Fragment>
+            <Row>
+                {
+                    products.map(product => {
+                        return (
+                            <ProductItem
+                                key={product.id}
+                                {...product}
+                            />
+                        )
+                    })
+                }
+            </Row>
+            <Row>
+                <Paging page={page + 1}
+                        totalPage={totalPage}
+                        onPageClick={(page) => {setPage(page - 1)}}
+                />
+            </Row>
+        </React.Fragment>
+    )
 }
 export default ProductList;
