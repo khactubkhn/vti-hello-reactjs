@@ -1,29 +1,45 @@
-import counterAction from "./redux/actions";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {useState} from 'react';
+import {connect} from 'react-redux';
 
-const CounterPage = () => {
-    const counter = useSelector(state => state.counter)
-    const dispatch = useDispatch();
+const CounterPage = ({counter, increment, decrement}) => {
 
-    const handleIncreaseCounter = () => {
-        // increase();
-        dispatch(counterAction.incrementCounter)
-    }
+  const handleIncreaseCounter = () => {
+    increment();
+  };
 
-    const handleDecreaseCounter = () => {
-        // decrease();
-        dispatch(counterAction.incrementCounter)
-    }
+  const handleDecreaseCounter = () => {
+   decrement();
+  };
 
-    return (
-        <>
-            <h2>Counter page</h2>
-            <h2>{counter}</h2>
-            <button onClick={handleIncreaseCounter}>Increase</button>
-            <button onClick={handleDecreaseCounter}>Decrease</button>
-        </>
-    );
+  return (
+      <>
+        <h2>Counter page</h2>
+        <h2>{counter}</h2>
+        <button onClick={handleIncreaseCounter}>Increase</button>
+        <button onClick={handleDecreaseCounter}>Decrease</button>
+      </>
+  );
 };
 
+const mapGlobalStateToProps = state => {
+  return {
+    counter: state.counter
+  }
+}
 
-export default CounterPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    increment: () => {
+      dispatch({
+        type: 'counter/increment'
+      });
+    },
+    decrement: () => {
+      dispatch({
+        type: 'counter/decrement'
+      });
+    }
+  }
+}
+
+export default connect(mapGlobalStateToProps, mapDispatchToProps)(CounterPage);
