@@ -3,11 +3,15 @@ import ProductItem from "../Product/productItem";
 import {Row} from "react-bootstrap";
 import Paging from "../../../../common/components/Pagination/pagination";
 import productService from "../../../../common/api/productService";
+import {useDispatch} from "react-redux";
+import productActions from "../../redux/actions";
 
 function ProductList() {
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
+
+    const dispatch = useDispatch();
 
 
     function fetchProducts(page, size){
@@ -26,7 +30,9 @@ function ProductList() {
 
     useEffect(() => {
         //Call API get products
-        fetchProducts(page, 10);
+        // fetchProducts(page, 10);
+        // dispatch(productActions.fetchProducts(page, 10));
+        dispatch(productActions.productsFetched([]));
     }, [page])
 
 
