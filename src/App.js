@@ -20,7 +20,7 @@ function App(){
               <Route path={"/admin"} element={<AdminWithAuth/>} />
               <Route path={"/login"} element={<LoginPage />} />
               <Route path={"/counter"} element={<CounterPage />} />
-              <Route path={"/styled"} element={<StyledComponent titleStyle={true} />} />
+              <Route path={"/styled"} element={<StyledComponent/>} />
             </Routes>
           </BrowserRouter>
         </Provider>

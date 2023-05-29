@@ -7,7 +7,7 @@ const productReducer = (state= initialState, action) => {
     switch (action.type){
         case FETCHED_PRODUCTS:
             console.log('payload: ', action.payload)
-            return state;
+            return action.payload
         default:
             return state
     }

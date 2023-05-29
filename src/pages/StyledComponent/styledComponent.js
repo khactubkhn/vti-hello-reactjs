@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {useState} from 'react';
 
-const StyledComponent = ({titleStyle}) => {
+const StyledComponent = () => {
   const [colorIndex, setColorIndex] = useState(0);
 
   const colors = ['red', 'blue', 'green']
